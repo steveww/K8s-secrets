@@ -153,10 +153,10 @@
 #    enabled: true
 
 # Enable statsd
-com.instana.plugin.statsd:
-  enabled: true
-  ports:
-    udp: 8125
-    mgmt: 8126
-  flush-interval: 10
+# com.instana.plugin.statsd:
+#   enabled: true
+#   ports:
+#     udp: 8125
+#     mgmt: 8126
+#   flush-interval: 10
 
