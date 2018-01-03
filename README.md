@@ -6,18 +6,23 @@ Ideally we could just mount the INSTANA Agent configuration.yaml file directly a
 
 To have a play with this follow these steps:
 
+Build your own agent image.
+
+    $ docker build -t your-repo/agent .
+
 Fire up minikube to get a K8s cluster going
 
     $ kubectl create namespace instana-agent
     $ ./make-secret.sh
     $ kubectl apply -f secrets.yaml
 
-Edit instana-agent.yml and put in your base64 encoded agent key
+Edit instana-agent.yml and put in your base64 encoded agent key and image you created above
 
     $ kubectl create -f instana-agent.yml
+    $ kubectl label node minikube agent=instana
     $ kubectl -n instana-agent get pod
 
-Make a note of the pod
+Make a note of the pod, it may take a while to get going
 
     $ kubectl -n instana-agent logs -f <pod>
 
@@ -30,7 +35,7 @@ In a different shell edit the configuration.yaml file and add the following
         mgmt: 8126
       flush-interval: 10
 
-Create the secrets file again
+Create the secrets file and apply it again
 
     $ ./make-secret.sh
     $ kubectl apply -f secrets.yaml
