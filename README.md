@@ -26,7 +26,7 @@ Make a note of the pod, it may take a while to get going
 
     $ kubectl -n instana-agent logs -f <pod>
 
-In a different shell edit the configuration.yaml file and add the following
+In a different shell edit the config/configuration.yaml file and add the following
 
     com.instana.plugin.statsd:
       enabled: true
